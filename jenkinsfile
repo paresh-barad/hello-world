@@ -14,14 +14,14 @@ pipeline {
                 }
             }
         }
-        // stage('Docker Remove Image') {
-        //     steps {
-        //         sh "docker rmi pareshbarad1992/node-app:${env.BUILD_NUMBER}"
-        //     }
-        // }
+        stage('Docker Remove Image') {
+            steps {
+                sh "docker rmi pareshbarad1992/node-app:${env.BUILD_NUMBER}"
+            }
+        }
         stage('Apply Kubernetes deployment file') {
             steps {
-                sh "cat deployment.yaml | sed 's/{{BUILD_NUMBER}}/${env.BUILD_NUMBER}/g' | kubectl apply -f -"
+                sh "cat deployment.yaml | sed -i 's/{{BUILD_NUMBER}}/${env.BUILD_NUMBER}/g' deploye-${env.BUILD_NUMBER}.yaml | kubectl apply -f deploye-${env.BUILD_NUMBER}.yaml"
             }
         }
         stage('Apply Kubernetes service file') {
