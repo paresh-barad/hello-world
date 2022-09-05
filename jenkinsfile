@@ -21,8 +21,13 @@ pipeline {
         }
         stage('Apply Kubernetes Files') {
             steps {
-                sh 'kubectl apply -f deployment.yaml'
+                sh 'cat deployment.yaml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g" | kubectl apply -f -'
                 sh 'kubectl apply -f service.yaml'
+            }
+        }
+        stage('Start service') {
+            steps {
+                sh 'minikube service node-app-service'
             }
         }
     }
