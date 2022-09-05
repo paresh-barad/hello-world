@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: podinfo-service
+  name: node-app-service
 spec:
   type: NodePort
   selector:
-    app: podinfo
+    app: node-app
   ports:
   - protocol: TCP
     nodePort: 32121
