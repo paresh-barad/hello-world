@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Apply Kubernetes deployment file') {
             steps {
-                sh "cat deployment.yaml | sed -i 's/{{BUILD_NUMBER}}/${env.BUILD_NUMBER}/g' deploye-${env.BUILD_NUMBER}.yaml | kubectl apply -f deploye-${env.BUILD_NUMBER}.yaml"
+                sh "sed 's/{{BUILD_NUMBER}}/${env.BUILD_NUMBER}/g' deployment.yaml > deployment-${env.BUILD_NUMBER}.yaml | kubectl apply -f deploye-${env.BUILD_NUMBER}.yaml"
             }
         }
         stage('Apply Kubernetes service file') {
