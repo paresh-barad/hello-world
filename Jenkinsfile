@@ -20,26 +20,10 @@ pipeline {
                 sh "docker rmi pareshbarad1992/node-app:${env.BUILD_NUMBER}"
             }
         }
-        stage('Create Kubernetes deployment file') {
-            steps {
-                // sh "cat deployment.yaml | sed 's/{{BUILD_NUMBER}}/${env.BUILD_NUMBER}/g' deployment.yaml > deployment-${env.BUILD_NUMBER}.yaml"
-                // sh "cp deployment.yaml deployment-${env.BUILD_NUMBER}.yaml"
-                // sh "sed 's/{{BUILD_NUMBER}}/${env.BUILD_NUMBER}/g' deployment-${env.BUILD_NUMBER}.yaml"
-                sh "kubectl create -f deployment.yaml -v=${env.BUILD_NUMBER}"
-            }
-        }
         
+
+
         
-        stage('Apply Kubernetes service file') {
-            steps {
-                sh 'kubectl apply -f service.yaml'
-            }
-        }
-        stage('Start service') {
-            steps {
-                sh 'minikube service node-app-service url'
-            }
-        }
     }
     post {
         success {
