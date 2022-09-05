@@ -1,5 +1,5 @@
 pipeline {
-    
+
     agent any
     stages {
         stage('Docker Build') {
@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Create Kubernetes deployment file') {
             steps {
-                sh "sed 's/{{BUILD_NUMBER}}/${env.BUILD_NUMBER}/g' deployment.yaml > deployment-${env.BUILD_NUMBER}.yaml"
+                sh "cat deployment.yaml | sed 's/{{BUILD_NUMBER}}/${env.BUILD_NUMBER}/g' deployment.yaml > deployment-${env.BUILD_NUMBER}.yaml"
             }
         }
          stage('Apply Kubernetes deployment file') {
