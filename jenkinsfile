@@ -19,15 +19,19 @@ pipeline {
                 sh "docker rmi pareshbarad1992/node-app:${env.BUILD_NUMBER}"
             }
         }
-        stage('Apply Kubernetes Files') {
+        stage('Apply Kubernetes deployment file') {
             steps {
                 sh "cat deployment.yaml | sed 's/{{BUILD_NUMBER}}/${env.BUILD_NUMBER}/g' | kubectl apply -f -"
+            }
+        }
+        stage('Apply Kubernetes service file') {
+            steps {
                 sh 'kubectl apply -f service.yaml'
             }
         }
         stage('Start service') {
             steps {
-                sh 'minikube service node-app-service'
+                sh 'minikube service node-app-service url'
             }
         }
     }
