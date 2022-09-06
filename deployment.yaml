@@ -16,7 +16,7 @@ spec:
     spec: 
      containers:
       - name: node-app
-        image: pareshbarad1992/node-app
+        image: pareshbarad1992/node-app:latest
         ports:
         - containerPort: 8000
 ---
