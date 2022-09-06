@@ -32,6 +32,7 @@ pipeline{
            stage('Deploying into k8s'){
             steps{
                 sh "kubectl apply -f ${WORKSPACE}/deployment.yaml"
+                
                 // sh "envsubst < ${WORKSPACE}/deployment.yaml | kubectl apply -f -"
 
             }
