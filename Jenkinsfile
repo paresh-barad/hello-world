@@ -31,8 +31,8 @@ pipeline{
            }
            stage('Deploying into k8s'){
             steps{
-                // sh 'kubectl apply -f https://raw.githubusercontent.com/paresh-barad/node-app/master/deployment.yaml' 
-                sh "envsubst < ${WORKSPACE}/deployment.yaml | kubectl apply -f -"
+                sh "kubectl apply -f ${WORKSPACE}/deployment.yaml"
+                // sh "envsubst < ${WORKSPACE}/deployment.yaml | kubectl apply -f -"
 
             }
         }
