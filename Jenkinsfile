@@ -29,11 +29,11 @@ pipeline{
                    }
                 } 
            }
-           stage('Deploying into k8s'){
-            steps{
-                sh "kubectl apply -f deployment.yaml"
-                // sh "envsubst < ${WORKSPACE}/deployment.yaml | kubectl apply -f -"
-            }
+        //    stage('Deploying into k8s'){
+        //     steps{
+        //         sh "kubectl apply -f deployment.yaml"
+        //         // sh "envsubst < ${WORKSPACE}/deployment.yaml | kubectl apply -f -"
+        //     }
         }
     }
 }
