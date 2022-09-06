@@ -31,7 +31,7 @@ pipeline{
            }
            stage('Deploying into k8s'){
             steps{
-                sh 'kubectl apply -f deployment.yaml' 
+                sh 'kubectl apply -f https://raw.githubusercontent.com/paresh-barad/node-app/master/deployment.yaml' 
             }
         }
     }
