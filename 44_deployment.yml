@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: node-app
-        image: pareshbarad1992/node-app:{{BUILD_NUMBER}}
+        image: pareshbarad1992/node-app:44
         ports:
         - containerPort: 8000
