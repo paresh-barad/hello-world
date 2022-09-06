@@ -1,4 +1,5 @@
-pipeline{  
+pipeline{ 
+     
   environment {
     registry = "pareshbarad1992/node-app"
     registryCredential = 'dockerhub'
