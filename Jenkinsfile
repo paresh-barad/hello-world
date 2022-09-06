@@ -25,22 +25,17 @@ pipeline {
         steps {
             withKubeConfig([credentialsId: '5a9436f4-55b5-4c0d-aeda-11819ce8afe2']) {
                 // sh 'cat deployment.yaml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g"  | kubectl apply -f -'
-                sh "sed 's/{{BUILD_NUMBER}}/${env.BUILD_NUMBER}/g' deployment.yml > ${env.BUILD_NUMBER}_deployment.yml  | kubectl apply -f ${env.BUILD_NUMBER}_deployment.yml"
+                // sh "sed 's/{{BUILD_NUMBER}}/${env.BUILD_NUMBER}/g' deployment.yml > ${env.BUILD_NUMBER}_deployment.yml  | kubectl apply -f ${env.BUILD_NUMBER}_deployment.yml"
+                sh 'kubectl apply -f 43_deployment.yml'
                 sh 'kubectl apply -f service.yaml'
             }
         }
   }
 
     }
-    post {
-        success {
-            echo 'Pipeline is successfully completed.'
-        }
-        failure {
-            echo 'Pipeline failed. Please check the logs.'
-        }
-        always {
-            sh 'docker logout'
-        }
+        post {
+            always {
+                sh 'docker logout'
+            }
     }
 }
