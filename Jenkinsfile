@@ -26,7 +26,7 @@ pipeline {
             withKubeConfig([credentialsId: '5a9436f4-55b5-4c0d-aeda-11819ce8afe2']) {
                 // sh 'cat deployment.yaml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g"  | kubectl apply -f -'
                 // sh "sed 's/{{BUILD_NUMBER}}/${env.BUILD_NUMBER}/g' deployment.yml > ${env.BUILD_NUMBER}_deployment.yml  | kubectl apply -f ${env.BUILD_NUMBER}_deployment.yml"
-                sh 'kubectl apply -f 44_deployment.yml'
+                // sh 'kubectl apply -f 44_deployment.yml'
                 sh 'kubectl apply -f service.yaml'
             }
         }
