@@ -15,11 +15,11 @@ pipeline {
                 }
             }
         }
-        stage('Docker Remove Image') {
-            steps {
-                sh "docker rmi pareshbarad1992/node-app:${env.BUILD_NUMBER}"
-            }
-        }
+        // stage('Docker Remove Image') {
+        //     steps {
+        //         sh "docker rmi pareshbarad1992/node-app:${env.BUILD_NUMBER}"
+        //     }
+        // }
         
         stage('Apply Kubernetes Files') {
         steps {
@@ -27,6 +27,7 @@ pipeline {
                 // sh 'cat deployment.yaml | sed "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/g"  | kubectl apply -f -'
                 // sh "sed 's/{{BUILD_NUMBER}}/${env.BUILD_NUMBER}/g' deployment.yml > ${env.BUILD_NUMBER}_deployment.yml  | kubectl apply -f ${env.BUILD_NUMBER}_deployment.yml"
                 // sh 'kubectl apply -f 44_deployment.yml'
+                sh 'docker exec -it 5efd449fea37 /bin/sh'
                 sh 'kubectl apply -f /usr/src/app/service.yml'
             }
         }
